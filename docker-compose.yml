@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  breast-cancer-ml:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: breast-cancer-classifier
+
+    # GPU support (uncomment if you have NVIDIA GPU)
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+    volumes:
+      - .:/workspaces/BreastCancerClassifier
+      - ./csv:/workspaces/BreastCancerClassifier/csv
+      - ./jpeg:/workspaces/BreastCancerClassifier/jpeg
+      - ./imagensCancerMama:/workspaces/BreastCancerClassifier/imagensCancerMama
+      - pip-cache:/root/.cache/pip
+
+    ports:
+      - "8888:8888" # Jupyter
+      - "6006:6006" # TensorBoard
+
+    environment:
+      - TF_CPP_MIN_LOG_LEVEL=2
+      - PYTHONUNBUFFERED=1
+      - CUDA_VISIBLE_DEVICES=0
+
+    shm_size: "2gb"
+
+    working_dir: /workspaces/BreastCancerClassifier
+
+    command: >
+      bash -c "
+      pip install --upgrade pip &&
+      pip install -r requirements.txt &&
+      jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.password=''
+      "
+
+    stdin_open: true
+    tty: true
+
+volumes:
+  pip-cache:
+    driver: local
