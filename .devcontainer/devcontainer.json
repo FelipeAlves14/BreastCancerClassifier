@@ -27,8 +27,6 @@
         "eamodio.gitlens",
 
         // Utilities
-        "visualstudioexptteam.vscodeintellicode",
-        "visualstudioexptteam.intellicode-api-usage-examples",
         "christian-kohler.path-intellisense",
         "pkief.material-icon-theme",
 
