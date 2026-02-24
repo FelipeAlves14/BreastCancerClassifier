@@ -25,8 +25,7 @@
     "eamodio.gitlens",
 
     // IntelliSense & Productivity
-    "visualstudioexptteam.vscodeintellicode",
-    "visualstudioexptteam.intellicode-api-usage-examples",
+    "GitHub.copilot-chat",
     "christian-kohler.path-intellisense",
 
     // Theme & Icons
