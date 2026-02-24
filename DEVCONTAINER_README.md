@@ -41,7 +41,7 @@
 
 ### GPU Support
 
-If you don´t want to use a GPU or you don´t have, you´ll have to edit `devcontainer.json`:
+If you´re using Windows, you cannot use GPU Support, because Windows is not synced with Tensorflow CUDA Support. If you simply don´t want to use a GPU or you don´t have, you´ll have to edit `devcontainer.json`:
 
 Edit `devcontainer.json` and erase/comment:
 
@@ -51,6 +51,8 @@ Edit `devcontainer.json` and erase/comment:
     "--shm-size=2g"
 ]
 ```
+
+Else if you want to use it, you´ll must have the NVIDIA CUDA Toolkit installed in your Linux Distribution following the [CUDA Installation Guide for Linux](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
 
 ## TensorBoard
 

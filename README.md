@@ -26,7 +26,7 @@ Or use the automated script:
 .\start.ps1
 ```
 
-##### Linux/Mac
+##### Linux
 
 ```bash
 chmod +x start.sh
