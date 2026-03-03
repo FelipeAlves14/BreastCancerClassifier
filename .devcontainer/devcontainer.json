@@ -1,0 +1,122 @@
+{
+  "name": "Breast Cancer Classifier - ML Environment",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // Python extensions
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy",
+
+        // Jupyter extensions
+        "ms-toolsai.jupyter",
+        "ms-toolsai.jupyter-keymap",
+        "ms-toolsai.jupyter-renderers",
+        "ms-toolsai.vscode-jupyter-cell-tags",
+        "ms-toolsai.vscode-jupyter-slideshow",
+
+        // Data Science & ML
+        "ms-toolsai.datawrangler",
+
+        // Git
+        "github.vscode-pull-request-github",
+        "eamodio.gitlens",
+
+        // Utilities
+        "christian-kohler.path-intellisense",
+        "pkief.material-icon-theme",
+
+        // Formatting & Linting
+        "ms-python.black-formatter",
+        "ms-python.flake8",
+        "ms-python.isort"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.languageServer": "Pylance",
+        "python.analysis.typeCheckingMode": "basic",
+        "python.analysis.autoImportCompletions": true,
+        "python.analysis.diagnosticMode": "workspace",
+
+        // Formatting
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.python",
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        },
+        "black-formatter.args": ["--line-length=88"],
+        "isort.args": ["--profile", "black"],
+
+        // Jupyter
+        "jupyter.askForKernelRestart": false,
+        "jupyter.widgetScriptSources": ["jsdelivr.com", "unpkg.com"],
+        "notebook.cellToolbarLocation": {
+          "default": "right",
+          "jupyter-notebook": "left"
+        },
+        "notebook.lineNumbers": "on",
+
+        // Terminal
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.fontSize": 14,
+
+        // Editor
+        "editor.rulers": [88],
+        "editor.minimap.enabled": true,
+        "files.autoSave": "afterDelay",
+        "files.autoSaveDelay": 1000,
+        "files.exclude": {
+          "**/__pycache__": true,
+          "**/*.pyc": true,
+          "**/.pytest_cache": true,
+          "**/.ipynb_checkpoints": true
+        }
+      }
+    }
+  },
+  "forwardPorts": [8888, 6006],
+  "portsAttributes": {
+    "8888": {
+      "label": "Jupyter Notebook",
+      "onAutoForward": "notify"
+    },
+    "6006": {
+      "label": "TensorBoard",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "pip install --upgrade pip && pip install -r requirements.txt",
+  "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11",
+      "installTools": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "username": "vscode",
+      "userUid": "1000",
+      "userGid": "1000"
+    }
+  },
+  "mounts": [
+    "source=${localWorkspaceFolder}/csv,target=/workspaces/${localWorkspaceFolderBasename}/csv,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/jpeg,target=/workspaces/${localWorkspaceFolderBasename}/jpeg,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/imagensCancerMama,target=/workspaces/${localWorkspaceFolderBasename}/imagensCancerMama,type=bind,consistency=cached"
+  ],
+  "containerEnv": {
+    "TF_CPP_MIN_LOG_LEVEL": "2",
+    "PYTHONUNBUFFERED": "1",
+    "CUDA_VISIBLE_DEVICES": "0"
+  },
+  "runArgs": ["--gpus=all", "--shm-size=2g"]
+}

@@ -37,7 +37,7 @@ def divide_test_to_train(csv: DataFrame) -> None:
                     break
 
 
-def change_dataframe_train_paths(path: str) -> str:
+def change_dataframe_train_paths(path: str) -> str | None:
     file_name: str = path.split("/")[2]
     for root, _, files in walk("imagensCancerMama/treino_dataset"):
         for file in files:
@@ -45,7 +45,7 @@ def change_dataframe_train_paths(path: str) -> str:
                 return f"{root}/{file}"
 
 
-def change_dataframe_test_paths(path: str) -> str:
+def change_dataframe_test_paths(path: str) -> str | None:
     file_name: str = path.split("/")[2]
     for root, _, files in walk("imagensCancerMama/teste_dataset"):
         for file in files:

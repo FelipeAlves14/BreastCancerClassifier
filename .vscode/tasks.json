@@ -1,0 +1,131 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Install Dependencies",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": ["-m", "pip", "install", "-r", "requirements.txt"],
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Update Requirements",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": ["-m", "pip", "freeze", ">", "requirements.txt"],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Run Jupyter Lab",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": ["-m", "jupyter", "lab"],
+      "problemMatcher": [],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Run TensorBoard",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": ["-m", "tensorboard", "--logdir=./logs", "--port=6006"],
+      "problemMatcher": [],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Format with Black",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": ["-m", "black", "."],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Sort Imports with isort",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": ["-m", "isort", "."],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Lint with Flake8",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": ["-m", "flake8", "."],
+      "problemMatcher": ["$python"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Clean Python Cache",
+      "type": "shell",
+      "windows": {
+        "command": "Get-ChildItem -Path . -Include __pycache__,*.pyc,*.pyo,*.egg-info,.pytest_cache,.ipynb_checkpoints -Recurse | Remove-Item -Recurse -Force"
+      },
+      "linux": {
+        "command": "find . -type d -name '__pycache__' -o -name '*.pyc' -o -name '*.pyo' -o -name '*.egg-info' -o -name '.pytest_cache' -o -name '.ipynb_checkpoints' | xargs rm -rf"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Test GPU Availability",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": [
+        "-c",
+        "import tensorflow as tf; print('GPU available:', tf.config.list_physical_devices('GPU'))"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "Check Package Versions",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": [
+        "-c",
+        "import tensorflow as tf; import keras; import numpy as np; import pandas as pd; print(f'TensorFlow: {tf.__version__}\\nKeras: {keras.__version__}\\nNumPy: {np.__version__}\\nPandas: {pd.__version__}')"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "recommendations": [
+    // Python Essential
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-python.debugpy",
+
+    // Jupyter Notebooks
+    "ms-toolsai.jupyter",
+    "ms-toolsai.jupyter-keymap",
+    "ms-toolsai.jupyter-renderers",
+    "ms-toolsai.vscode-jupyter-cell-tags",
+    "ms-toolsai.vscode-jupyter-slideshow",
+
+    // Data Science & ML
+    "ms-toolsai.datawrangler",
+
+    // Code Formatting & Linting
+    "ms-python.black-formatter",
+    "ms-python.flake8",
+    "ms-python.isort",
+
+    // Git & GitHub
+    "github.vscode-pull-request-github",
+    "eamodio.gitlens",
+
+    // IntelliSense & Productivity
+    "GitHub.copilot-chat",
+    "christian-kohler.path-intellisense",
+
+    // Theme & Icons
+    "pkief.material-icon-theme",
+
+    // Docker (useful for devcontainer)
+    "ms-azuretools.vscode-docker",
+
+    // Markdown
+    "yzhang.markdown-all-in-one"
+  ]
+}
