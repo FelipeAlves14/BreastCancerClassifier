@@ -2,7 +2,7 @@
 
 final project for the undergraduate degree in systems analysis and development at IFRN
 
-The project consists of a binary classifier for mammography images using Convolutional Neural Networks, employing Python libraries for model building, image processing, and dataset management.
+The project consists of a binary classifier for mammography images using Convolutional Neural Networks, employing Python libraries for model building, image processing, and dataset management. [Read my article here](./artigo.pdf)
 
 ## How to run the project
 
